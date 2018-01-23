@@ -5,6 +5,10 @@ using UnityEngine;
 public class movement : MonoBehaviour {
     public float dragSpeed = 2f;
     public float RotateSpeed = 20000f;
+    public float moveTrigger = 20f;
+    public float cameraThrust = 600f;
+
+    public Rigidbody rb;
     
     private Vector3 dragOrigin;
     
@@ -22,15 +26,16 @@ public class movement : MonoBehaviour {
 
        
 
-        Move_camera();
+        Move_camera_Drag();
         Zoom_camera();
+        Move_camera_Keys();
         //Rotate_camera();
 
 
 
-        
+
     }
-    void Move_camera() {
+    void Move_camera_Drag() {
         Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - dragOrigin);
         if (Input.GetMouseButtonDown(0))
         {
@@ -41,6 +46,45 @@ public class movement : MonoBehaviour {
         Vector3 move = new Vector3(pos.x * dragSpeed, 0, pos.y * dragSpeed);
         transform.Translate(move, Space.World);
     }
+
+    private void Move_camera_Keys()
+    {
+        Vector3 mousePos = Input.mousePosition;
+        Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+          cameraThrust = 1000f;
+        }
+
+        if (mousePos.x < moveTrigger || Input.GetKey("a"))
+        {
+            rb.AddForce(-cameraThrust, 0, 0);
+        }
+        if (mousePos.x > screenSize.x - moveTrigger || Input.GetKey("d"))
+        {
+            rb.AddForce(cameraThrust, 0, 0);
+        }
+        if (mousePos.y < moveTrigger || Input.GetKey("s"))
+        {
+            rb.AddForce(0, 0, -cameraThrust);
+        }
+        if (mousePos.y > screenSize.y - moveTrigger || Input.GetKey("w"))
+        {
+            rb.AddForce(0, 0, cameraThrust);
+        }
+
+
+
+
+
+
+
+
+
+
+    }
+
     void Rotate_camera() {
         var cam = GetComponent<Camera>();
         Vector3 middle = cam.ViewportToWorldPoint(new Vector3(0.5f , cam.nearClipPlane , 0.5f));
@@ -74,5 +118,7 @@ public class movement : MonoBehaviour {
             transform.Translate(zoom, Space.World);
         }
     }     
+
+
 }
 
