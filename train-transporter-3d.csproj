@@ -357,6 +357,7 @@
     <Compile Include="Assets\Script\mapDisplay.cs" />
     <Compile Include="Assets\Script\mapGeneration.cs" />
     <Compile Include="Assets\Script\noise.cs" />
+    <Compile Include="Assets\Script\TextureGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ProceduralToolkit\Examples\Characters\names.txt" />

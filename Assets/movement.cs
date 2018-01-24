@@ -54,7 +54,7 @@ public class movement : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-          cameraThrust = 1000f;
+          cameraThrust = 1400f;
         }
 
         if (mousePos.x < moveTrigger || Input.GetKey("a"))
@@ -73,16 +73,6 @@ public class movement : MonoBehaviour {
         {
             rb.AddForce(0, 0, cameraThrust);
         }
-
-
-
-
-
-
-
-
-
-
     }
 
     void Rotate_camera() {
