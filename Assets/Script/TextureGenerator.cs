@@ -8,6 +8,8 @@ public static class TextureGenerator {
     {
         Texture2D texture = new Texture2D(width, height);
         texture.SetPixels (colourMap);
+        texture.filterMode = FilterMode.Point;
+        texture.wrapMode = TextureWrapMode.Clamp; 
         texture.Apply();
         return texture;
     }
