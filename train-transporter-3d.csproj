@@ -354,6 +354,9 @@
     <Compile Include="Assets\ProceduralToolkit\Scripts\RandomE.cs" />
     <Compile Include="Assets\ProceduralToolkit\Scripts\TextureE.cs" />
     <Compile Include="Assets\ProceduralToolkit\Scripts\VectorE.cs" />
+    <Compile Include="Assets\Script\mapDisplay.cs" />
+    <Compile Include="Assets\Script\mapGeneration.cs" />
+    <Compile Include="Assets\Script\noise.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ProceduralToolkit\Examples\Characters\names.txt" />

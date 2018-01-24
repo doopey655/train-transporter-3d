@@ -288,6 +288,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\mapGeneratrionEditor.cs" />
     <Compile Include="Assets\ProceduralToolkit\Examples\Buildings\Editor\BuildingGeneratorConfiguratorEditor.cs" />
     <Compile Include="Assets\ProceduralToolkit\Examples\Chairs\Editor\ChairGeneratorConfiguratorEditor.cs" />
     <Compile Include="Assets\ProceduralToolkit\Examples\LowPolyTerrain\Editor\LowPolyTerrainGeneratorConfiguratorEditor.cs" />
