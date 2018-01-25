@@ -7,6 +7,7 @@ public class movement : MonoBehaviour {
     public float RotateSpeed = 20000f;
     public float moveTrigger = 20f;
     public float cameraThrust = 600f;
+    public bool drag = true;
 
     public Rigidbody rb;
     
@@ -22,13 +23,18 @@ public class movement : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+      
+        if (drag)
+        {
+            Move_camera_Drag();
+            Zoom_camera();
+        }
+        else
+        {
+            Move_camera_Keys();
+        }
        
-
-       
-
-        Move_camera_Drag();
-        Zoom_camera();
-        Move_camera_Keys();
+        
         //Rotate_camera();
 
 
@@ -54,7 +60,7 @@ public class movement : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-          cameraThrust = 1400f;
+          cameraThrust = cameraThrust * 1.2f;
         }
 
         if (mousePos.x < moveTrigger || Input.GetKey("a"))
