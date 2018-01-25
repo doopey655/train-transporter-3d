@@ -45,7 +45,7 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
-  controlID: 88
+  controlID: 113
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
-  controlID: 89
+  controlID: 32
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -234,7 +234,7 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
-  controlID: 90
+  controlID: 33
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -362,19 +362,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Script
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Script
+  - Assets
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\2b\Documents\TrainSim\train-transporter-3d
+  m_LastProjectPath: D:\Dennis\Documents\unity-projects\train-transporter-3d\Train
+    Transporter 3D
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 4a280000
-    m_LastClickedID: 10314
-    m_ExpandedIDs: 0000000026280000182c000000ca9a3bffffff7f
+    m_SelectedIDs: 882b0000
+    m_LastClickedID: 11144
+    m_ExpandedIDs: 00000000882b00005c2f0000ffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -402,7 +403,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000026280000182c0000
+    m_ExpandedIDs: 00000000882b00005c2f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -430,7 +431,7 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: c6230000
+    m_ExpandedInstanceIDs: c623000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -522,7 +523,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 9efbffff00000000
+    m_ExpandedIDs: 5cc3ffff66cbffff84cfffffdef8ffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -578,9 +579,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0.6487153, y: 0.84350586, z: -38.21507}
+    m_Target: {x: 944.8034, y: 466.498, z: -388.9516}
     speed: 2
-    m_Value: {x: 0.6487153, y: 0.84350586, z: -38.21507}
+    m_Value: {x: 944.8034, y: 466.498, z: -388.9516}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -604,13 +605,13 @@ MonoBehaviour:
       speed: 2
       m_Value: 0
   m_Rotation:
-    m_Target: {x: -0.71553475, y: 0.0031436665, z: -0.00321984, w: -0.6985626}
+    m_Target: {x: -0.2903398, y: 0.1682438, z: -0.051933493, w: -0.9405848}
     speed: 2
-    m_Value: {x: -0.7155348, y: 0.0031436668, z: -0.0032198401, w: -0.6985627}
+    m_Value: {x: -0.29033983, y: 0.16824381, z: -0.051933497, w: -0.94058484}
   m_Size:
-    m_Target: 3389.632
+    m_Target: 831.0836
     speed: 2
-    m_Value: 3389.632
+    m_Value: 831.0836
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -647,7 +648,7 @@ MonoBehaviour:
     x: 315
     y: 100
     width: 1178
-    height: 417
+    height: 420
   m_PersistentViewDataDictionary: {fileID: 0}
   m_MaximizeOnPlay: 0
   m_Gizmos: 0
@@ -659,8 +660,8 @@ MonoBehaviour:
     m_VRangeLocked: 0
     m_HBaseRangeMin: -589
     m_HBaseRangeMax: 589
-    m_VBaseRangeMin: -200
-    m_VBaseRangeMax: 200
+    m_VBaseRangeMin: -201.5
+    m_VBaseRangeMax: 201.5
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -678,9 +679,9 @@ MonoBehaviour:
       x: 0
       y: 17
       width: 1178
-      height: 400
+      height: 403
     m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 589, y: 200}
+    m_Translation: {x: 589, y: 201.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
@@ -688,14 +689,14 @@ MonoBehaviour:
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
       x: -589
-      y: -200
+      y: -201.5
       width: 1178
-      height: 400
+      height: 403
     m_MinimalGUI: 1
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
-  m_LastWindowPixelSize: {x: 1178, y: 417}
+  m_LastWindowPixelSize: {x: 1178, y: 420}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
