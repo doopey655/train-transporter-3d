@@ -27,21 +27,23 @@ public class mapGeneration : MonoBehaviour {
 
 	public void generateMap(){
 		
-		float[,] noiseMap = noise.generateNoiseMap (mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset);
+		float[,] noiseMap = noise.generateNoiseMap (mapWidth, mapHeight, seed, noiseScale, octaves, persistance, lacunarity, offset, regions);
 
         Color[] colourMap = new Color[mapWidth * mapHeight];
         for(int y = 0; y < mapHeight; y++)
         {
             for(int x = 0; x < mapWidth; x++)
             {
-                float currentHeight = noiseMap[x, y];
-                for(int i = 0; i < regions.Length; i++)
+                float currentHeight = noiseMap[x, y];   
+                for (int i = 0; i < regions.Length; i++)
                 {
-                    if(currentHeight <= regions[i].height)
-                    {
-                        colourMap [y * mapWidth + x] = regions [i].colour;
-                        break;
-                    }
+
+                if (currentHeight <= regions[i].height)
+                {
+                colourMap [y * mapWidth + x] = regions [i].colour;
+                break;
+                }
+
                 }
             }
         }
@@ -52,6 +54,7 @@ public class mapGeneration : MonoBehaviour {
         if(drawMode == Drawmode.NoiseMap)
         {
             display.DrawTexture(TextureGenerator.TextureFromHeightMap(noiseMap));
+           
         }else if (drawMode == Drawmode.ColourMap)
         {
             display.DrawTexture(TextureGenerator.TextureFromColourMap(colourMap, mapWidth, mapHeight));

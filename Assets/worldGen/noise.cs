@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class noise {
+public static class noise
+{
 
-	public static float[,] generateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offset)
-	{
-		
-		float[,] noiseMap = new float[mapWidth, mapHeight];
+    public static float[,] generateNoiseMap(int mapWidth, int mapHeight, int seed, float scale, int octaves, float persistance, float lacunarity, Vector2 offset, TerrainType[] regions)
+    {
+
+        float[,] noiseMap = new float[mapWidth, mapHeight];
 
         System.Random prng = new System.Random(seed);
         Vector2[] octaveOffsets = new Vector2[octaves];
@@ -19,9 +20,10 @@ public static class noise {
 
         }
 
-		if (scale <= 0) {
-			scale = 0.0001f;
-		}
+        if (scale <= 0)
+        {
+            scale = 0.0001f;
+        }
 
         float maxNoiseHeight = float.MinValue;
         float minNoiseHeight = float.MaxValue;
@@ -29,8 +31,10 @@ public static class noise {
         float halfWidth = mapWidth / 2f;
         float halfHeight = mapHeight / 2f;
 
-        for (int y = 0; y < mapHeight; y++){
-			for (int x = 0; x < mapWidth; x++) {
+        for (int y = 0; y < mapHeight; y++)
+        {
+            for (int x = 0; x < mapWidth; x++)
+            {
 
                 float amplitude = 1;
                 float frequency = 1;
@@ -38,8 +42,8 @@ public static class noise {
 
                 for (int i = 0; i < octaves; i++)
                 {
-                    float sampleX = (x-halfWidth) / scale * frequency + octaveOffsets[i].x;
-                    float sampleY = (y-halfHeight) / scale * frequency + octaveOffsets[i].y;
+                    float sampleX = (x - halfWidth) / scale * frequency + octaveOffsets[i].x;
+                    float sampleY = (y - halfHeight) / scale * frequency + octaveOffsets[i].y;
 
                     float perlinValue = Mathf.PerlinNoise(sampleX, sampleY) * 2 - 1;
                     noiseHeight += perlinValue * amplitude;
@@ -51,22 +55,31 @@ public static class noise {
                 if (noiseHeight > maxNoiseHeight)
                 {
                     maxNoiseHeight = noiseHeight;
-                }else if (noiseHeight < minNoiseHeight)
+                }
+                else if (noiseHeight < minNoiseHeight)
                 {
                     minNoiseHeight = noiseHeight;
                 }
 
                 noiseMap[x, y] = noiseHeight;
 
-			}
- 		}
+            }
+        }
         for (int y = 0; y < mapHeight; y++)
         {
             for (int x = 0; x < mapWidth; x++)
             {
+                for (int i = 0; i < regions.Length; i++)
+                {
+                    if (noiseMap[x, y] < regions[i].height)
+                    {
+                        noiseMap[x, y] = regions[i].height;
+                        break;
+                    }
+                }
                 noiseMap[x, y] = Mathf.InverseLerp(minNoiseHeight, maxNoiseHeight, noiseMap[x, y]);
             }
         }
-                return noiseMap;
-	}
+        return noiseMap;
+    }
 }
