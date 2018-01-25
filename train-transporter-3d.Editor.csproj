@@ -289,37 +289,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Editor\mapGeneratrionEditor.cs" />
-    <Compile Include="Assets\ProceduralToolkit\Examples\Buildings\Editor\BuildingGeneratorConfiguratorEditor.cs" />
-    <Compile Include="Assets\ProceduralToolkit\Examples\Chairs\Editor\ChairGeneratorConfiguratorEditor.cs" />
-    <Compile Include="Assets\ProceduralToolkit\Examples\LowPolyTerrain\Editor\LowPolyTerrainGeneratorConfiguratorEditor.cs" />
-    <Compile Include="Assets\ProceduralToolkit\Scripts\Editor\ColorHSVDrawer.cs" />
-    <Compile Include="Assets\ProceduralToolkit\Scripts\Editor\MeshFilterExtension.cs" />
-    <Compile Include="Assets\ProceduralToolkit\Scripts\Editor\ProceduralToolkitMenu.cs" />
-    <Compile Include="Assets\ProceduralToolkit\Scripts\Editor\RulesetDrawer.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Assets\ProceduralToolkit\Examples\Characters\names.txt" />
-    <None Include="Assets\ProceduralToolkit\Examples\SDF\Animation.shader" />
-    <None Include="Assets\ProceduralToolkit\Examples\SDF\DistanceOperations.shader" />
-    <None Include="Assets\ProceduralToolkit\Examples\SDF\Easing.shader" />
-    <None Include="Assets\ProceduralToolkit\Examples\SDF\Shapes.shader" />
-    <None Include="Assets\ProceduralToolkit\Examples\SDF\StarPolygon.shader" />
-    <None Include="Assets\ProceduralToolkit\Examples\SDF\Transitions.shader" />
-    <None Include="Assets\ProceduralToolkit\LICENSE.txt" />
-    <None Include="Assets\ProceduralToolkit\Shaders\Common.cginc" />
-    <None Include="Assets\ProceduralToolkit\Shaders\Debug\Debug Bitangents.shader" />
-    <None Include="Assets\ProceduralToolkit\Shaders\Debug\Debug Normals.shader" />
-    <None Include="Assets\ProceduralToolkit\Shaders\Debug\Debug Tangents.shader" />
-    <None Include="Assets\ProceduralToolkit\Shaders\Debug\Debug UV1.shader" />
-    <None Include="Assets\ProceduralToolkit\Shaders\Debug\Debug UV2.shader" />
-    <None Include="Assets\ProceduralToolkit\Shaders\Easing.cginc" />
-    <None Include="Assets\ProceduralToolkit\Shaders\Gradient Skybox.shader" />
-    <None Include="Assets\ProceduralToolkit\Shaders\SDF.cginc" />
-    <None Include="Assets\ProceduralToolkit\Shaders\Transitions.cginc" />
-    <None Include="Assets\ProceduralToolkit\Shaders\VertexColor\Diffuse Vertex Color.shader" />
-    <None Include="Assets\ProceduralToolkit\Shaders\VertexColor\Specular Vertex Color.shader" />
-    <None Include="Assets\ProceduralToolkit\Shaders\VertexColor\Standard Vertex Color.shader" />
-    <None Include="Assets\ProceduralToolkit\Shaders\VertexColor\Unlit Vertex Color.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
