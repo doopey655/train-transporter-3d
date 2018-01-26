@@ -286,6 +286,7 @@
     <Compile Include="Assets\UI\MenuScript.cs" />
     <Compile Include="Assets\UI\RailsMenu.cs" />
     <Compile Include="Assets\UI\SignalsMenu.cs" />
+    <Compile Include="Assets\worldGen\endlessTerrain.cs" />
     <Compile Include="Assets\worldGen\mapDisplay.cs" />
     <Compile Include="Assets\worldGen\mapGeneration.cs" />
     <Compile Include="Assets\worldGen\meshGenerator.cs" />
