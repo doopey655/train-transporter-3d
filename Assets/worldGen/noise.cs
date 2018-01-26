@@ -69,17 +69,10 @@ public static class noise
         {
             for (int x = 0; x < mapWidth; x++)
             {
-                for (int i = 0; i < regions.Length; i++)
-                {
-                    if (noiseMap[x, y] < regions[i].height)
-                    {
-                        noiseMap[x, y] = regions[i].height;
-                        break;
-                    }
-                }
                 noiseMap[x, y] = Mathf.InverseLerp(minNoiseHeight, maxNoiseHeight, noiseMap[x, y]);
             }
         }
         return noiseMap;
     }
 }
+

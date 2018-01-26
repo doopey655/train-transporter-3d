@@ -32,6 +32,7 @@ public class movement : MonoBehaviour {
         else
         {
             Move_camera_Keys();
+            Zoom_camera();
         }
        
         
@@ -60,7 +61,7 @@ public class movement : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
-          cameraThrust = cameraThrust * 1.2f;
+            cameraThrust = 1200f;
         }
 
         if (mousePos.x < moveTrigger || Input.GetKey("a"))
