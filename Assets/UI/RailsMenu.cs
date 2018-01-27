@@ -34,6 +34,7 @@ public class RailsMenu : MonoBehaviour {
         SpawnCube = GameObject.CreatePrimitive(PrimitiveType.Cube);
         
         //Rails listerners here
+        
         Straight.onClick.AddListener(StraightRailsToggle);
         Curved.onClick.AddListener(CurvedRailsToggle);
         Delete.onClick.AddListener(DeleteRailsToggle);
@@ -59,30 +60,47 @@ public class RailsMenu : MonoBehaviour {
     }
     void placeRail()
     {
-       
+        for (int i = 0; i > 100; i++)
+        {
+            Debug.Log("in for ");
+            if (Physics.CheckSphere(spawnPos, 1f))
+            {
+                Debug.Log("if");
+                Instantiate(spawnStraightRail, spawnPos, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(spawnStraightRail, spawnPos, Quaternion.identity);
+                Debug.Log("else");
+            }
+        }
     }
     // Update is called once per frame
     void Update () {
         
         if (activate == true) {
             var mousePos = Input.mousePosition;
-            mousePos.z = 300f;
+            mousePos.z = 75f;
             
             
             cameraPos = Camera.main.ScreenToWorldPoint(mousePos);
-            spawnPos = new Vector3(cameraPos.x + 0f, 0f, cameraPos.z + 500f);
+            spawnPos = new Vector3(Mathf.Round(cameraPos.x), 0.1f, Mathf.Round(cameraPos.z + 30f));
             spawnStraightRail.transform.position = spawnPos;
 
             //transform.position = followMe;
             if (Input.GetMouseButtonDown(1))
-            { 
-                Instantiate(spawnStraightRail, spawnPos, Quaternion.identity);
+            {
+                if (Physics.CheckSphere(spawnPos, 1f))
+                {
+                    Debug.Log("if");
+                    var pos = new Vector3(Mathf.Round(spawnPos.x), Mathf.Round(spawnPos.y) , Mathf.Round(spawnPos.z));
+                    Instantiate(spawnStraightRail, spawnPos, Quaternion.identity);
+                }
                 spawnStraightRail.transform.position = new Vector3(0, 0, 0);
                 activate = false;
+                Debug.Log(spawnPos);
                 Debug.Log("rightclick");
                 Debug.Log(activate);
-
-
             }
         }
     }
