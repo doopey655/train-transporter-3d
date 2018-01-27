@@ -6,16 +6,15 @@ public class endlessTerrain : MonoBehaviour {
 
     public const float maxViewDst = 450;
     public Transform viewer;
+	public Material mapMaterial;
 
     public static Vector2 viewerPosistion;
-	public mapGeneration mapGeneration;
+	static mapGeneration mapGeneration;
     int chunkSize;
     int chunksVisibleInViewDst;
 
-	List<TerrainChunk> terrainChunksVisibleLastUpdate = new List<TerrainChunk>();
-
 	Dictionary<Vector2, TerrainChunk> terrainChunkDictonDictionary = new Dictionary<Vector2, TerrainChunk>();
-
+	List<TerrainChunk> terrainChunksVisibleLastUpdate = new List<TerrainChunk>();
 
 	void Start () {
 		mapGeneration = FindObjectOfType<mapGeneration> ();
@@ -29,10 +28,6 @@ public class endlessTerrain : MonoBehaviour {
 		UpdateVisableCunks ();
 	}
 
-	void onMapDataRecieved(MapData mapData)
-	{
-		print ("mapData recieved");
-	}
 
     void UpdateVisableCunks()
     {
@@ -40,9 +35,10 @@ public class endlessTerrain : MonoBehaviour {
 		for (int i = 0; i < terrainChunksVisibleLastUpdate.Count; i++) 
 		{
 			terrainChunksVisibleLastUpdate [i].SetVisible (false);
-		
 		}
+
 		terrainChunksVisibleLastUpdate.Clear ();
+
         int currentChunkCoordX = Mathf.RoundToInt(viewerPosistion.x / chunkSize);
         int currentChunkCoordY = Mathf.RoundToInt(viewerPosistion.y / chunkSize);
 
@@ -58,7 +54,7 @@ public class endlessTerrain : MonoBehaviour {
 					}
 				
 				} else {
-					terrainChunkDictonDictionary.Add (viewedChunckCoord, new TerrainChunk(viewedChunckCoord,chunkSize,transform));
+					terrainChunkDictonDictionary.Add (viewedChunckCoord, new TerrainChunk(viewedChunckCoord,chunkSize,transform, mapMaterial));
 				
 				}
 
@@ -66,32 +62,51 @@ public class endlessTerrain : MonoBehaviour {
         }
 
     }
+
+
 	public class TerrainChunk{
 
 		GameObject meshObject;
 		Vector2 posistion;
 		Bounds bounds;
 
-		MeshFilter meshFilter;
 		MeshRenderer meshRenderer;
+		MeshFilter meshFilter;
 
 
-		public TerrainChunk(Vector2 coord, int size, Transform parent)
+		public TerrainChunk(Vector2 coord, int size, Transform parent, Material material)
 		{
 			posistion = coord * size;
 			Vector3 posistionV3 = new Vector3(posistion.x,0,posistion.y);
 			bounds = new Bounds(posistion, Vector2.one * size);
 			
 			meshObject = new GameObject("Terrain Chunk");
-			meshObject.transform.position = meshObject.AddComponent<MeshRenderer>();
+			meshRenderer = meshObject.AddComponent<MeshRenderer>();
 			meshFilter = meshObject.AddComponent<MeshFilter>();
-			meshObject.transform.localScale = Vector3.one * size /10f;
+			meshRenderer.material = material;
+
+			meshObject.transform.position = posistionV3;
 			meshObject.transform.parent = parent;
+
 			SetVisible(false);
+
+			mapGeneration.RequestMapData(OnMapDataRecieved);
 
 		}
 
-		public void UpdateTerrainChunk() {
+		void OnMapDataRecieved(MapData mapData)
+		{
+			mapGeneration.requestMeshData (mapData, OnMeshDataRecieved);
+		}
+
+
+		void OnMeshDataRecieved(MeshData meshData)
+		{
+			meshFilter.mesh = meshData.CreateMesh ();	
+		}
+
+		public void UpdateTerrainChunk() 
+		{
 			float viewerDstFromNearestEdge = Mathf.Sqrt (bounds.SqrDistance (viewerPosistion));
 			bool visible = viewerDstFromNearestEdge <= maxViewDst;
 			SetVisible (visible);
@@ -101,7 +116,8 @@ public class endlessTerrain : MonoBehaviour {
 		{
 			meshObject.SetActive (visible);
 		}
-		public bool IsVisible(){
+		public bool IsVisible()
+		{
 			return meshObject.activeSelf;
 		}
 	}

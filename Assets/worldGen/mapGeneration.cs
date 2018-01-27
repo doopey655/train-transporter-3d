@@ -52,33 +52,46 @@ public class mapGeneration : MonoBehaviour {
 
 	public void RequestMapData(Action<MapData> callback)
 	{
-		ThreadStart threadStart = delegate {
+		ThreadStart threadStart = delegate 
+		{
 			MapDataThread (callback);
 		};
-		new Thread (ThreadStart).Start ();
+
+		new Thread (threadStart).Start ();
 	}
 
 	void MapDataThread(Action<MapData> callback)
 	{
-		MapData mapData = generateMapData ();
+		MapData mapData = generateMapData();
 		lock (mapDataThreadInfoQueue) {
 			mapDataThreadInfoQueue.Enqueue (new MapThreadInfo<MapData> (callback, mapData));
 		}
 	}
 
-	public void requestMeshData(MapData mapData, Action<MapData> callback)
+	public void requestMeshData(MapData mapData, Action<MeshData> callback) {
+		ThreadStart threadStart = delegate {
+			meshDataThread(mapData, callback);
+		};
+		new Thread(threadStart).Start();
+	}﻿
+
+	public void meshDataThread(MapData mapData, Action<MeshData> callback)
 	{
-		
-	}
-	public void meshDataThread(MapData mapData, Action<MapData> callback)
-	{
-		MeshData meshData = meshGenerator.GenerateTerrainMesh(mapData.heightmap, meshHeightMultiplier, meshHeightCurve, levelOfDetail );
-		lock (meshDataThreadInfoQueue);
+		MeshData meshData = meshGenerator.GenerateTerrainMesh(mapData.heightmap, meshHeightMultiplier, meshHeightCurve, levelOfDetail);
+		lock (meshDataThreadInfoQueue) {
+			meshDataThreadInfoQueue.Enqueue(new MapThreadInfo<MeshData>(callback, meshData));
+		};
 	}
 	void Update(){
-		if (mapDataThreadInfoQueue > 0) {
+		if (mapDataThreadInfoQueue.Count > 0) {
 			for (int i = 0; i <mapDataThreadInfoQueue.Count; i++) {
 				MapThreadInfo<MapData> threadInfo = mapDataThreadInfoQueue.Dequeue ();
+				threadInfo.callback (threadInfo.parameter);
+			}
+		}
+		if (meshDataThreadInfoQueue.Count > 0) {
+			for (int i = 0; i <meshDataThreadInfoQueue.Count; i++) {
+				MapThreadInfo<MeshData> threadInfo = meshDataThreadInfoQueue.Dequeue ();
 				threadInfo.callback (threadInfo.parameter);
 			}
 		}
