@@ -2,7 +2,12 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/worldGen/endlessTerrain.cs">
     <Files>
-      <File FileName="Assets/worldGen/endlessTerrain.cs" Line="54" Column="113" />
+      <File FileName="Assets/worldGen/endlessTerrain.cs" Line="126" Column="27" />
+      <File FileName="Assets/worldGen/mapGeneration.cs" Line="32" Column="91" />
+      <File FileName="Assets/worldGen/meshGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets/worldGen/mapDisplay.cs" Line="1" Column="1" />
+      <File FileName="Assets/worldGen/noise.cs" Line="1" Column="1" />
+      <File FileName="Assets/worldGen/TextureGenerator.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
