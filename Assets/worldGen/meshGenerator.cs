@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class meshGenerator{
 
-    public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier, AnimationCurve heightCurve, int levelOfDetail)
-    {
+    public static MeshData GenerateTerrainMesh(float[,] heightMap, float heightMultiplier, AnimationCurve _heightCurve, int levelOfDetail)
+	{
+		AnimationCurve heightCurve = new AnimationCurve (_heightCurve.keys);
+
         int width = heightMap.GetLength(0);
         int height = heightMap.GetLength(1);
         float topLeftX = (width - 1) / -2f;
         float topLeftZ = (height- 1) / -2f;
-    
+		bool isFlatshaded = true;
+
         int meshSimpplificationIncrement = (levelOfDetail == 0)?1:levelOfDetail * 2;
         int verticesPerLine = (width - 1) / meshSimpplificationIncrement + 1;
 
@@ -32,11 +35,34 @@ public class meshGenerator{
                 vertexIndex++;
             }          
         }
-
+		if (isFlatshaded)
+		{
+			RecalculateFlatShadedMeshData(meshData);
+		}
         return meshData;
     }
 
+	private static void RecalculateFlatShadedMeshData(MeshData meshData)
+	{
+		Vector3[] oldVerts = meshData.vertices;
+		Vector2[] oldUvs = meshData.uvs;
+		int[] triangles = meshData.triangles;
 
+
+		Vector3[] vertices = new Vector3[triangles.Length];
+		Vector2[] uvs = new Vector2[triangles.Length];
+
+		for (int i = 0; i < triangles.Length; i++)
+		{
+			vertices[i] = oldVerts[triangles[i]];
+			uvs[i] = oldUvs[triangles[i]];
+			triangles[i] = i;
+		}
+
+		meshData.vertices = vertices;
+		meshData.triangles = triangles;
+		meshData.uvs = uvs;
+	}
 }
 
 public class MeshData
